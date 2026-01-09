@@ -41,4 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 certificates
-public/
+public/ik_cd_worker.js
+public/wasm
+public/sciurus17left
+public/sciurus17right
