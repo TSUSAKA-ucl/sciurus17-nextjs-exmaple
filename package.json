@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@ucl-nuee/ik-cd-worker": "^0.2.19",
+    "@ucl-nuee/robot-loader": "^1.0.17",
+    "@ucl-nuee/sciurus17left": "^1.0.1",
+    "@ucl-nuee/sciurus17right": "^1.0.1",
+    "aframe": "^1.7.1",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
