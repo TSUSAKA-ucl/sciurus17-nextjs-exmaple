@@ -10,7 +10,7 @@ import '@ucl-nuee/robot-loader/vrControllerThumbMenu.js';
 import '@ucl-nuee/robot-loader/axesFrame.js';
 import '@ucl-nuee/robot-loader/baseMover.js';
 import '@ucl-nuee/robot-loader/attachToAnother.js';
-import './ChangeOpacity.js';
+import '@ucl-nuee/robot-loader/ChangeOpacity.js';
 
 function App() {
   const deg30 = Math.PI / 6.0;
