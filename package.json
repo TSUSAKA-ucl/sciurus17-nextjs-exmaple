@@ -2,21 +2,15 @@
   "name": "sciurus-test",
   "version": "0.1.1",
   "private": true,
-  "scripts": {
-    "dev": "next dev --experimental-https",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
   "dependencies": {
-    "@ucl-nuee/ik-cd-worker": "workspace:*",
-    "@ucl-nuee/robot-loader": "workspace:*",
-    "@ucl-nuee/sciurus17left": "workspace:*",
-    "@ucl-nuee/sciurus17right": "workspace:*",
     "aframe": "^1.7.1",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "@ucl-nuee/ik-cd-worker": "0.2.21",
+    "@ucl-nuee/sciurus17right": "1.0.1",
+    "@ucl-nuee/robot-loader": "1.0.22",
+    "@ucl-nuee/sciurus17left": "1.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -27,5 +21,11 @@
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "next dev --experimental-https",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   }
 }
