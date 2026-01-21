@@ -13,6 +13,7 @@ import '@ucl-nuee/robot-loader/axesFrame.js';
 import '@ucl-nuee/robot-loader/baseMover.js';
 import '@ucl-nuee/robot-loader/attachToAnother.js';
 import '@ucl-nuee/robot-loader/ChangeOpacity.js';
+import './fingerCloser.js';
 
 function App() {
   const deg30 = Math.PI / 6.0;
@@ -65,8 +66,8 @@ function App() {
                  width="0.1" height="0.1" color="tan"
                  material="opacity: 0.5; transparent: true; side: double;"
                  robot-loader="model: sciurus17left"
-                 ik-worker={`0, ${-deg22}, ${deg45}, ${-deg45}, ${-deg90}, ${0}, ${0}, ${0}, ${-deg67}`}
-                 joint-desirable={`gain: 1:21,2:21; upper: 1:${-deg67},2:${deg22}; lower: 1:${-deg22},2:${deg22};`}
+                 ik-worker={`0, ${-deg22}, ${deg45}, ${-deg45}, ${-deg90}, ${0}, ${deg67}, ${0}`}
+                 joint-desirable={`gain: 1:21,2:21,6:21; upper: 1:${-deg45},2:${deg67},6:${deg67}; lower: 1:${-deg45},2:${deg67},6:${deg67};`}
                  joint-desirable-vlimit="all: 0.5"
                  joint-weight="override: 0:0.0064"
                  reflect-worker-joints
@@ -80,6 +81,18 @@ function App() {
                  /* attach-opacity-recursively="opacity: 0.5" */
                  /* attach-color-recursively="color: lightskyblue" */
         >
+          <a-circle id="sciurus-lgripperA"
+                    radius="0.03" color="blue"
+                    robot-loader="model: sciurus17lgripperA"
+                    attach-to-another="to: sciurus-l-arm"
+                    finger-closer="closeMax:0;openMax:-45"
+          />
+          <a-circle id="sciurus-lgripperB"
+                    radius="0.03" color="blue"
+                    robot-loader="model: sciurus17lgripperB"
+                    attach-to-another="to: sciurus-l-arm"
+                    finger-closer="closeMax:0;openMax:-45"
+          />
         </a-plane>
         <a-plane id="sciurus-r-arm"
                  position="0.0 0.0 0.0" rotation="0 0 0"
@@ -87,8 +100,8 @@ function App() {
                  material="opacity: 0.5; transparent: true; side: double;"
                  robot-loader="model: sciurus17right"
                  attach-to-another="to: sciurus-l-arm; axis: 1"
-                 ik-worker={`${deg22}, ${-deg45}, ${deg45}, ${deg90}, ${0}, ${0}, ${0}, ${deg67}`}
-                 joint-desirable={`gain: 0:21,1:21; upper: 0:${deg22},1:${-deg22}; lower: 0:${deg22},1:${-deg22};`}
+                 ik-worker={`${deg22}, ${-deg45}, ${deg45}, ${deg90}, ${0}, ${-deg67}, ${0}`}
+                 joint-desirable={`gain: 0:21,1:21,5:21; upper: 0:${deg45},1:${-deg67},5:${-deg67}; lower: 0:${deg45},1:${-deg67},5:${-deg67};`}
                  joint-desirable-vlimit="all: 0.5"
                  reflect-worker-joints
                  reflect-collision="color: yellow"
@@ -99,6 +112,18 @@ function App() {
                  /* attach-opacity-recursively="opacity: 0.5" */
                  /* attach-color-recursively="color: lightskyblue" */
         >
+          <a-circle id="sciurus-rgripperA"
+                    radius="0.03" color="blue"
+                    robot-loader="model: sciurus17rgripperA"
+                    attach-to-another="to: sciurus-r-arm"
+                    finger-closer="closeMax: 0;openMax: 45;"
+          />
+          <a-circle id="sciurus-rgripperB"
+                    radius="0.03" color="blue"
+                    robot-loader="model: sciurus17rgripperB"
+                    attach-to-another="to: sciurus-r-arm"
+                    finger-closer="closeMax: 0;openMax: 45;"
+          />
         </a-plane>
       </a-plane>
     </a-scene>

@@ -3,14 +3,13 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@ucl-nuee/ik-cd-worker": "0.2.21",
+    "@ucl-nuee/robot-loader": "1.0.22",
+    "@ucl-nuee/sciurus17": "^1.1.1",
     "aframe": "^1.7.1",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "@ucl-nuee/ik-cd-worker": "0.2.21",
-    "@ucl-nuee/sciurus17right": "1.0.1",
-    "@ucl-nuee/robot-loader": "1.0.22",
-    "@ucl-nuee/sciurus17left": "1.0.1"
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
