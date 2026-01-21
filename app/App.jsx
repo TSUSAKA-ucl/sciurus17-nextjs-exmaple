@@ -13,7 +13,7 @@ import '@ucl-nuee/robot-loader/axesFrame.js';
 import '@ucl-nuee/robot-loader/baseMover.js';
 import '@ucl-nuee/robot-loader/attachToAnother.js';
 import '@ucl-nuee/robot-loader/ChangeOpacity.js';
-import './fingerCloser.js';
+import '@ucl-nuee/robot-loader/fingerCloser.js';
 
 function App() {
   const deg30 = Math.PI / 6.0;
@@ -32,7 +32,7 @@ function App() {
                 robot-registry >
         <a-entity right-controller
                   laser-controls="hand: right"
-                  thumbstick-menu="items: ray; laser: false"
+                  thumbstick-menu="items: sciurus-r-arm,ray,sciurus-l-arm,ray; laser: false"
                   target-selector="id: sciurus-r-arm"
                   event-distributor
                   visible="false">
@@ -40,7 +40,7 @@ function App() {
         </a-entity>
         <a-entity left-controller
                   laser-controls="hand: left"
-                  thumbstick-menu="items: ray; laser: false"
+                  thumbstick-menu="items: sciurus-r-arm,ray,sciurus-l-arm,ray; laser: false"
                   target-selector="id: sciurus-l-arm"
                   event-distributor
                   visible="false">
@@ -73,7 +73,11 @@ function App() {
                  reflect-worker-joints
                  reflect-collision="color: yellow"
                  reflect-joint-limits
-                 attach-event-broadcaster
+                 /* event-forwarder__ad="target:sciurus-lgripperA;event:xbuttondown" */
+                 /* event-forwarder__au="target:sciurus-lgripperA;event:xbuttonup" */
+                 /* event-forwarder__bd="target:sciurus-lgripperA;event:ybuttondown" */
+                 /* event-forwarder__bu="target:sciurus-lgripperA;event:ybuttonup" */
+                 attach-event-broadcaster="target:sciurus-lgripperA"
                  add-frame-to-joints="from: 0; to: 1"
                  arm-motion-ui
                  base-mover="velocityMax: 0.2; angularVelocityMax: 0.5"
@@ -85,13 +89,13 @@ function App() {
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17lgripperA"
                     attach-to-another="to: sciurus-l-arm"
-                    finger-closer="closeMax:0;openMax:-45"
+                    finger-closer="closeMax: 0; openMax: -45; closeEvent: xbuttondown; closeStopEvent: xbuttonup; openEvent: ybuttondown; openStopEvent: ybuttonup;"
           />
           <a-circle id="sciurus-lgripperB"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17lgripperB"
                     attach-to-another="to: sciurus-l-arm"
-                    finger-closer="closeMax:0;openMax:-45"
+                    finger-closer="closeMax: 0; openMax: -45; closeEvent: xbuttondown; closeStopEvent: xbuttonup; openEvent: ybuttondown; openStopEvent: ybuttonup;"
           />
         </a-plane>
         <a-plane id="sciurus-r-arm"
@@ -106,7 +110,11 @@ function App() {
                  reflect-worker-joints
                  reflect-collision="color: yellow"
                  reflect-joint-limits
-                 attach-event-broadcaster
+                 /* event-forwarder__ad="target:sciurus-rgripperA;event:abuttondown" */
+                 /* event-forwarder__au="target:sciurus-rgripperA;event:abuttonup" */
+                 /* event-forwarder__bd="target:sciurus-rgripperA;event:bbuttondown" */
+                 /* event-forwarder__bu="target:sciurus-rgripperA;event:bbuttonup" */
+                 attach-event-broadcaster="target:sciurus-rgripperA"
                  arm-motion-ui
                  change-original-color-recursively="color: azure"
                  /* attach-opacity-recursively="opacity: 0.5" */
