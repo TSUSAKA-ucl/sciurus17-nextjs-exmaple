@@ -32,7 +32,7 @@ function App() {
                 robot-registry >
         <a-entity right-controller
                   laser-controls="hand: right"
-                  thumbstick-menu="items: sciurus-r-arm,ray,sciurus-l-arm,ray; laser: false"
+                  thumbstick-menu="items: sciurus-r-arm,a0509,sciurus-l-arm,ray; laser: false"
                   target-selector="id: sciurus-r-arm"
                   event-distributor
                   visible="false">
@@ -40,23 +40,25 @@ function App() {
         </a-entity>
         <a-entity left-controller
                   laser-controls="hand: left"
-                  thumbstick-menu="items: sciurus-r-arm,ray,sciurus-l-arm,ray; laser: false"
+                  thumbstick-menu="items: sciurus-r-arm,a0509,sciurus-l-arm,ray; laser: false"
                   target-selector="id: sciurus-l-arm"
                   event-distributor
                   visible="false">
           <a-entity a-axes-frame="length: 0.1" />
         </a-entity>
       </a-entity>
-      {/* <a-plane id="a0509" */}
-      {/*          position="0.0 0.0 -1.0" rotation="-90 0 -90" */}
-      {/*          width="0.04" height="0.04" color="blue" */}
-      {/*          robot-loader="model: a0509white" */}
-      {/*          ik-worker={`0, ${-deg90}, ${deg90}, 0, ${deg90}, 0`} */}
-      {/*          reflect-worker-joints */}
-      {/*          arm-motion-ui */}
-      {/*          base-mover="velocityMax: 0.2; angularVelocityMax: 0.5" */}
-      {/*          attach-color-recursively="color: lightblue" */}
-      {/* /> */}
+      <a-plane id="a0509"
+               position="0.0 0.0 -1.0" rotation="-90 0 -90"
+               width="0.04" height="0.04" color="blue"
+               robot-loader="model: a0509"
+               ik-worker={`0, ${-deg90}, ${deg90}, 0, ${deg90}, 0`}
+               reflect-worker-joints
+               reflect-collision="color: yellow"
+               reflect-joint-limits
+               arm-motion-ui
+               base-mover="velocityMax: 0.2; angularVelocityMax: 0.5"
+               attach-color-recursively="color: lightblue"
+      />
       <a-plane id="sciurus17"
                position="0.0 -0.2 -0.5" rotation="-90 0 110"
                width="0.4" height="0.4" color="tan"
