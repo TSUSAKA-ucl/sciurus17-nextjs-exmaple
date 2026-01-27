@@ -1,9 +1,9 @@
 {
-  "name": "sciurus-test",
-  "version": "0.2.1",
+  "name": "@ucl-nuee/sciurus17-a0509-test",
+  "version": "0.2.2",
   "private": false,
   "dependencies": {
-    "@ucl-nuee/a0509": "^1.0.1",
+    "@ucl-nuee/a0509": "^1.0.3",
     "@ucl-nuee/ik-cd-worker": "workspace:*",
     "@ucl-nuee/robot-loader": "workspace:*",
     "@ucl-nuee/sciurus17": "^1.1.1",

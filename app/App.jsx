@@ -48,10 +48,10 @@ function App() {
         </a-entity>
       </a-entity>
       <a-plane id="a0509"
-               position="0.0 0.0 -1.0" rotation="-90 0 -90"
+               position="-1.5 0.0 -1.0" rotation="-90 0 90"
                width="0.04" height="0.04" color="blue"
                robot-loader="model: a0509"
-               ik-worker={`0, ${-deg90}, ${deg90}, 0, ${deg90}, 0`}
+               ik-worker={`0, ${0}, ${deg90}, 0, ${deg90}, 0`}
                reflect-worker-joints
                reflect-collision="color: yellow"
                reflect-joint-limits
