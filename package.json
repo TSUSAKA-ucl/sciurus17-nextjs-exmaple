@@ -5,6 +5,7 @@
   "dependencies": {
     "@ucl-nuee/a0509": "^1.0.3",
     "@ucl-nuee/ik-cd-worker": "workspace:*",
+    "@ucl-nuee/piper": "^1.1.1",
     "@ucl-nuee/robot-loader": "workspace:*",
     "@ucl-nuee/sciurus17": "^1.1.1",
     "aframe": "^1.7.1",
