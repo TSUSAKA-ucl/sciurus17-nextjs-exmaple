@@ -1,15 +1,17 @@
 {
-  "name": "sciurus-test",
-  "version": "0.1.1",
-  "private": true,
+  "name": "@ucl-nuee/sciurus17-a0509-test",
+  "version": "0.2.2",
+  "private": false,
   "dependencies": {
+    "@ucl-nuee/a0509": "^1.0.3",
+    "@ucl-nuee/piper": "^1.1.1",
     "@ucl-nuee/sciurus17": "^1.1.1",
     "aframe": "^1.7.1",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "@ucl-nuee/ik-cd-worker": "0.2.23",
-    "@ucl-nuee/robot-loader": "1.0.25"
+    "@ucl-nuee/ik-cd-worker": "0.2.25",
+    "@ucl-nuee/robot-loader": "1.0.27"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

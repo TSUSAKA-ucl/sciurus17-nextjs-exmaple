@@ -1,3 +1,4 @@
+//234567890123456789012345678901234567890123456789012345678901234567890123456789
 "use client";
 import * as React from 'react';
 import 'aframe';
@@ -16,6 +17,17 @@ import '@ucl-nuee/robot-loader/ChangeOpacity.js';
 import '@ucl-nuee/robot-loader/fingerCloser.js';
 
 function App() {
+  const toSchema = (obj, separator='; ') => {
+    if (typeof obj !== 'object' || obj === null) {
+      return String(obj);
+    }
+    if (Array.isArray(obj)) {
+      return obj.map((v) => toSchema(v, ',')).join(', ');
+    }
+    return Object.entries(obj)
+      .map(([key, value]) => `${key}: `+toSchema(value,','))
+      .join(separator);
+  };
   const deg30 = Math.PI / 6.0;
   const deg90 = Math.PI/2;
   const deg67 = Math.PI*3/8;
@@ -32,7 +44,12 @@ function App() {
                 robot-registry >
         <a-entity right-controller
                   laser-controls="hand: right"
-                  thumbstick-menu="items: sciurus-r-arm,ray,sciurus-l-arm,ray; laser: false"
+                  thumbstick-menu={
+                    toSchema({items: ['sciurus-r-arm',
+                                      'piper',
+				      'sciurus-l-arm',
+				      'ray'],
+			      laser: false})}
                   target-selector="id: sciurus-r-arm"
                   event-distributor
                   visible="false">
@@ -40,23 +57,66 @@ function App() {
         </a-entity>
         <a-entity left-controller
                   laser-controls="hand: left"
-                  thumbstick-menu="items: sciurus-r-arm,ray,sciurus-l-arm,ray; laser: false"
+                  thumbstick-menu={
+                    toSchema({items: ['sciurus-r-arm',
+                                      'a0509',
+                                      'sciurus-l-arm',
+                                      'ray'],
+                              laser: false})}
                   target-selector="id: sciurus-l-arm"
                   event-distributor
                   visible="false">
           <a-entity a-axes-frame="length: 0.1" />
         </a-entity>
       </a-entity>
-      {/* <a-plane id="a0509" */}
-      {/*          position="0.0 0.0 -1.0" rotation="-90 0 -90" */}
-      {/*          width="0.04" height="0.04" color="blue" */}
-      {/*          robot-loader="model: a0509white" */}
-      {/*          ik-worker={`0, ${-deg90}, ${deg90}, 0, ${deg90}, 0`} */}
-      {/*          reflect-worker-joints */}
-      {/*          arm-motion-ui */}
-      {/*          base-mover="velocityMax: 0.2; angularVelocityMax: 0.5" */}
-      {/*          attach-color-recursively="color: lightblue" */}
-      {/* /> */}
+      <a-plane id="piper"
+               position="1.5 0.0 -1.0" rotation="-90 0 90"
+               width="0.04" height="0.04" color="blue"
+               robot-loader="model: piper"
+               ik-worker={`0, 0.24, -0.40, 0, 0.23, 0`}
+               reflect-worker-joints
+               reflect-collision="color: yellow"
+               reflect-joint-limits
+               arm-motion-ui
+               base-mover="velocityMax: 0.2; angularVelocityMax: 0.5"
+      >
+        <a-circle id="piper-finger7"
+                  radius="0.03" color="blue"
+                  robot-loader="model: piper-finger7"
+                  attach-to-another="to: piper;event: a,b,x,y"
+                  finger-closer={toSchema({closeMax: 0, openMax: 3,
+                                           openSpeed: 0.03,
+                                           closeSpeed: 0.03,
+                                           closeEvent: 'abuttondown',
+                                           closeStopEvent: 'abuttonup',
+                                           openEvent: 'bbuttondown',
+                                           openStopEvent: 'bbuttonup'})}
+        />
+        <a-circle id="piper-finger8"
+                  radius="0.03" color="blue"
+                  robot-loader="model: piper-finger8"
+                  attach-to-another="to: piper;event: a,b,x,y"
+                  finger-closer={toSchema({closeMax: 0, openMax: -3,
+                                           openSpeed: 0.03,
+                                           closeSpeed: 0.03,
+                                           closeEvent: 'abuttondown',
+                                           closeStopEvent: 'abuttonup',
+                                           openEvent: 'bbuttondown',
+                                           openStopEvent: 'bbuttonup'})}
+        />
+      </a-plane>
+      <a-plane id="a0509"
+               position="-1.5 0.0 -1.0" rotation="-90 0 90"
+               width="0.04" height="0.04" color="blue"
+               robot-loader="model: a0509"
+               ik-worker={`0, ${0}, ${deg90}, 0, ${deg90}, 0`}
+               reflect-worker-joints
+               reflect-collision="color: yellow"
+               reflect-joint-limits
+               arm-motion-ui
+               base-mover="velocityMax: 0.2; angularVelocityMax: 0.5"
+               attach-color-recursively="color: lightblue"
+      />
       <a-plane id="sciurus17"
                position="0.0 -0.2 -0.5" rotation="-90 0 110"
                width="0.4" height="0.4" color="tan"
@@ -66,18 +126,17 @@ function App() {
                  width="0.1" height="0.1" color="tan"
                  material="opacity: 0.5; transparent: true; side: double;"
                  robot-loader="model: sciurus17left"
-                 ik-worker={`0, ${-deg22}, ${deg45}, ${-deg45}, ${-deg90}, ${0}, ${deg67}, ${0}`}
-                 joint-desirable={`gain: 1:21,2:21,6:21; upper: 1:${-deg45},2:${deg67},6:${deg67}; lower: 1:${-deg45},2:${deg67},6:${deg67};`}
+                 ik-worker={
+                   toSchema([0, -deg22, deg45, -deg45, -deg90, 0, deg67, 0])}
+                 joint-desirable={
+                   toSchema({gain: {1:21, 2:21, 6:21},
+			     upper: {1:-deg45, 2:deg67, 6:deg67},
+			     lower: {1:-deg45, 2:deg67, 6:deg67}})}
                  joint-desirable-vlimit="all: 0.5"
                  joint-weight="override: 0:0.0064"
                  reflect-worker-joints
                  reflect-collision="color: yellow"
                  reflect-joint-limits
-                 /* event-forwarder__ad="target:sciurus-lgripperA;event:xbuttondown" */
-                 /* event-forwarder__au="target:sciurus-lgripperA;event:xbuttonup" */
-                 /* event-forwarder__bd="target:sciurus-lgripperA;event:ybuttondown" */
-                 /* event-forwarder__bu="target:sciurus-lgripperA;event:ybuttonup" */
-                 attach-event-broadcaster="target:sciurus-lgripperA"
                  add-frame-to-joints="from: 0; to: 1"
                  arm-motion-ui
                  base-mover="velocityMax: 0.2; angularVelocityMax: 0.5"
@@ -88,15 +147,23 @@ function App() {
           <a-circle id="sciurus-lgripperA"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17lgripperA"
-                    attach-to-another="to: sciurus-l-arm"
-                    finger-closer="closeMax: 0; openMax: -45; closeEvent: xbuttondown; closeStopEvent: xbuttonup; openEvent: ybuttondown; openStopEvent: ybuttonup;"
+                    attach-to-another="to: sciurus-l-arm;event: a,b,x,y"
+                    finger-closer={toSchema({closeMax: 0, openMax: -45,
+                                             closeEvent: 'xbuttondown',
+                                             closeStopEvent: 'xbuttonup',
+                                             openEvent: 'ybuttondown',
+                                             openStopEvent: 'ybuttonup'})}
           />
           <a-circle id="sciurus-lgripperB"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17lgripperB"
-                    attach-to-another="to: sciurus-l-arm"
-                    finger-closer="closeMax: 0; openMax: -45; closeEvent: xbuttondown; closeStopEvent: xbuttonup; openEvent: ybuttondown; openStopEvent: ybuttonup;"
-          />
+                    attach-to-another="to: sciurus-l-arm;event: a,b,x,y"
+                    finger-closer={toSchema({closeMax: 0, openMax: -45,
+                                             closeEvent: 'xbuttondown',
+                                             closeStopEvent: 'xbuttonup',
+                                             openEvent: 'ybuttondown',
+                                             openStopEvent: 'ybuttonup'})}
+	  />
         </a-plane>
         <a-plane id="sciurus-r-arm"
                  position="0.0 0.0 0.0" rotation="0 0 0"
@@ -104,17 +171,16 @@ function App() {
                  material="opacity: 0.5; transparent: true; side: double;"
                  robot-loader="model: sciurus17right"
                  attach-to-another="to: sciurus-l-arm; axis: 1"
-                 ik-worker={`${deg22}, ${-deg45}, ${deg45}, ${deg90}, ${0}, ${-deg67}, ${0}`}
-                 joint-desirable={`gain: 0:21,1:21,5:21; upper: 0:${deg45},1:${-deg67},5:${-deg67}; lower: 0:${deg45},1:${-deg67},5:${-deg67};`}
+                 ik-worker={
+                   toSchema([deg22, -deg45, deg45, deg90, 0, -deg67, 0])}
+                 joint-desirable={
+                   toSchema({gain: {0:21, 1:21, 5:21},
+                             upper: {0:deg45, 1:-deg67, 5:-deg67},
+			     lower: {0:deg45, 1:-deg67, 5:-deg67}})}
                  joint-desirable-vlimit="all: 0.5"
                  reflect-worker-joints
                  reflect-collision="color: yellow"
                  reflect-joint-limits
-                 /* event-forwarder__ad="target:sciurus-rgripperA;event:abuttondown" */
-                 /* event-forwarder__au="target:sciurus-rgripperA;event:abuttonup" */
-                 /* event-forwarder__bd="target:sciurus-rgripperA;event:bbuttondown" */
-                 /* event-forwarder__bu="target:sciurus-rgripperA;event:bbuttonup" */
-                 attach-event-broadcaster="target:sciurus-rgripperA"
                  arm-motion-ui
                  change-original-color-recursively="color: azure"
                  /* attach-opacity-recursively="opacity: 0.5" */
@@ -123,13 +189,13 @@ function App() {
           <a-circle id="sciurus-rgripperA"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17rgripperA"
-                    attach-to-another="to: sciurus-r-arm"
+                    attach-to-another="to: sciurus-r-arm;event: a,b,x,y"
                     finger-closer="closeMax: 0;openMax: 45;"
           />
           <a-circle id="sciurus-rgripperB"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17rgripperB"
-                    attach-to-another="to: sciurus-r-arm"
+                    attach-to-another="to: sciurus-r-arm;event: a,b,x,y"
                     finger-closer="closeMax: 0;openMax: 45;"
           />
         </a-plane>
