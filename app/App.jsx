@@ -190,13 +190,13 @@ function App() {
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17rgripperA"
                     attach-to-another="to: sciurus-r-arm;event: a,b,x,y"
-                    finger-closer="closeMax: 0;openMax: 45;"
+                    finger-closer="closeMax: 0;openMax: 45;debugTick: true"
           />
           <a-circle id="sciurus-rgripperB"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17rgripperB"
                     attach-to-another="to: sciurus-r-arm;event: a,b,x,y"
-                    finger-closer="closeMax: 0;openMax: 45;"
+                    finger-closer="closeMax: 0;openMax: 45;debugTick: true"
           />
         </a-plane>
       </a-plane>

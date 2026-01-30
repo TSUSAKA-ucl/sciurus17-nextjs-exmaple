@@ -1,6 +1,6 @@
 {
   "name": "@ucl-nuee/sciurus17-a0509-test",
-  "version": "0.2.2",
+  "version": "0.2.5",
   "private": false,
   "dependencies": {
     "@ucl-nuee/a0509": "^1.0.3",
