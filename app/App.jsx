@@ -15,6 +15,7 @@ import '@ucl-nuee/robot-loader/baseMover.js';
 import '@ucl-nuee/robot-loader/attachToAnother.js';
 import '@ucl-nuee/robot-loader/ChangeOpacity.js';
 import '@ucl-nuee/robot-loader/fingerCloser.js';
+import '@ucl-nuee/ik-cd-worker/IkWorkerParamsComponents.js';
 
 function App() {
   const toSchema = (obj, separator='; ') => {
@@ -133,9 +134,10 @@ function App() {
 			     upper: {1:-deg45, 2:deg67, 6:deg67},
 			     lower: {1:-deg45, 2:deg67, 6:deg67}})}
                  joint-desirable-vlimit="all: 0.5"
-                 joint-weight="override: 0:0.0064"
+                 joint-weight="override: 0:0.0016"
                  reflect-worker-joints
                  reflect-collision="color: yellow"
+                 set-joint-limit-keep-moving="true"
                  reflect-joint-limits
                  add-frame-to-joints="from: 0; to: 1"
                  arm-motion-ui
@@ -178,6 +180,7 @@ function App() {
                              upper: {0:deg45, 1:-deg67, 5:-deg67},
 			     lower: {0:deg45, 1:-deg67, 5:-deg67}})}
                  joint-desirable-vlimit="all: 0.5"
+                 set-joint-limit-keep-moving="true"
                  reflect-worker-joints
                  reflect-collision="color: yellow"
                  reflect-joint-limits
