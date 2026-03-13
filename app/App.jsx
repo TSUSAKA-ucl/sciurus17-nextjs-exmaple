@@ -128,7 +128,7 @@ function App() {
                  material="opacity: 0.5; transparent: true; side: double;"
                  robot-loader="model: sciurus17left"
                  ik-worker={
-                   toSchema([0, -deg22, deg45, -deg45, -deg90, 0, deg67, 0])}
+                   toSchema([0, -deg22, deg67, deg45, -deg90, 0, deg67, 0])}
                  joint-desirable={
                    toSchema({gain: {1:21, 2:21, 6:21},
 			     upper: {1:-deg45, 2:deg67, 6:deg67},
@@ -143,8 +143,7 @@ function App() {
                  arm-motion-ui
                  base-mover="velocityMax: 0.2; angularVelocityMax: 0.5"
                  change-original-color-recursively="color: azure"
-                 /* attach-opacity-recursively="opacity: 0.5" */
-                 /* attach-color-recursively="color: lightskyblue" */
+                 attach-opacity-recursively="opacity: 0.3"
         >
           <a-circle id="sciurus-lgripperA"
                     radius="0.03" color="blue"
@@ -155,6 +154,7 @@ function App() {
                                              closeStopEvent: 'xbuttonup',
                                              openEvent: 'ybuttondown',
                                              openStopEvent: 'ybuttonup'})}
+                    attach-opacity-recursively="opacity: 0.3"
           />
           <a-circle id="sciurus-lgripperB"
                     radius="0.03" color="blue"
@@ -165,6 +165,7 @@ function App() {
                                              closeStopEvent: 'xbuttonup',
                                              openEvent: 'ybuttondown',
                                              openStopEvent: 'ybuttonup'})}
+                    attach-opacity-recursively="opacity: 0.3"
 	  />
         </a-plane>
         <a-plane id="sciurus-r-arm"
@@ -174,7 +175,7 @@ function App() {
                  robot-loader="model: sciurus17right"
                  attach-to-another="to: sciurus-l-arm; axis: 1"
                  ik-worker={
-                   toSchema([deg22, -deg45, deg45, deg90, 0, -deg67, 0])}
+                   toSchema([deg22, -deg67, -deg45, deg90, 0, -deg67, 0])}
                  joint-desirable={
                    toSchema({gain: {0:21, 1:21, 5:21},
                              upper: {0:deg45, 1:-deg67, 5:-deg67},
@@ -186,20 +187,21 @@ function App() {
                  reflect-joint-limits
                  arm-motion-ui
                  change-original-color-recursively="color: azure"
-                 /* attach-opacity-recursively="opacity: 0.5" */
-                 /* attach-color-recursively="color: lightskyblue" */
+                 attach-opacity-recursively="opacity: 0.3"
         >
           <a-circle id="sciurus-rgripperA"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17rgripperA"
                     attach-to-another="to: sciurus-r-arm;event: a,b,x,y"
                     finger-closer="closeMax: 0;openMax: 45;debugTick: true"
+                    attach-opacity-recursively="opacity: 0.3"
           />
           <a-circle id="sciurus-rgripperB"
                     radius="0.03" color="blue"
                     robot-loader="model: sciurus17rgripperB"
                     attach-to-another="to: sciurus-r-arm;event: a,b,x,y"
                     finger-closer="closeMax: 0;openMax: 45;debugTick: true"
+                    attach-opacity-recursively="opacity: 0.3"
           />
         </a-plane>
       </a-plane>
